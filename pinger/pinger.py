@@ -7,9 +7,9 @@ class Pinger(cdk.Construct):
     def __init__(
         self, scope: cdk.Construct, id: str, *, url: str, tps: int
     ):
-        super.__init__(scope, id)
+        super().__init__(scope, id)
         cluster = aws_ecs.Cluster(self, "Cluster")
-        taskdef = aws_ecs.Fargate(self, "PingerTask")
+        taskdef = aws_ecs.FargateTaskDefinition(self, "PingerTask")
         taskdef.add_container(
             "Pinger",
             image=aws_ecs.ContainerImage.from_asset("./docker"),
